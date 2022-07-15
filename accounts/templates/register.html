@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>استعادة</h1>
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Register">
+</form>
+<p>Already Have Account? <a href="">سجل دخول</a></p>
+
+{% endblock content %}

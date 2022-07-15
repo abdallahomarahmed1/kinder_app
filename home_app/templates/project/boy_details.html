@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="align-items-center text-lg-start text-center text-xl-start text-md-start">
+<div class="container mt-4">
+    <style>
+        .border {
+            border: 2px solid #000;
+            border-radius: 12px;
+            padding: 20px;
+            background-color: #343a40;
+            color: #fff;
+            box-shadow: 7px 7px 5px 4px rgba(0, 0, 0, 0.21);
+        }
+        @media print {
+        .btn{
+            display: none;
+        }
+        img{
+            width:250px;
+            height:250px;
+            object-fit:cover;
+            border-radius:50%;
+        };
+    </style>
+    {% for boy in boy %}
+    {% if boy.image %}
+        <center><h2 class="col-xl-12"><img src="{{boy.image.url}}" class="img-responsive" height="250px" width="250px"></h2></center>
+    {% endif %}
+    <div class="row border">
+        <h2 class="col-xl-4 col-sm-12 col-md-6 col-lg-6 col-xl-6">الإسم:<span class="text-info">{{boy.name}}</span></h2>
+        <h2 class="col-xl-4 col-sm-12 col-md-6 col-lg-6 col-xl-6">السن:<span class="text-info">{{boy.age}}</span></h2>
+        <h2 class="col-xl-4 col-sm-12 col-md-6 col-lg-6 col-xl-6">الفصل:<span class="text-info">{{boy.boy_class}}</span></h2>
+        {% if boy.number_kawme %}
+            <h2 class="col-xl-4 col-sm-12 col-md-6 col-lg-6 col-xl-6">الرقم القومي:<span class="text-info">{{boy.number_kawme}}</span></h2>
+        {% endif %}
+        {% if boy.number_phone %}
+            <h2 class="col-xl-4 col-sm-12 col-md-6 col-lg-6 col-xl-6">رقم الهاتف:<span class="text-info">{{boy.number_phone}}</span></h2>
+        {% endif %}
+        {% if boy.other_number %}
+            <h2 class="col-xl-4 col-sm-12 col-md-6 col-lg-6 col-xl-6">رقم اخر:<span class="text-info">{{boy.other_number}}</span></h2>
+        {% endif %}
+        <h2 class="col-xl-4 col-sm-12 col-md-6 col-lg-6 col-xl-6">المبلغ المدفوع:<span class="text-info">{{boy.paid}}</span></h2>
+        <h2 class="col-xl-4 col-sm-12 col-md-6 col-lg-6 col-xl-6">المبلغ المتبقي:<span class="text-info">{{boy.Remaining_amount}}</span></h2>
+        {% if boy.Date_of_Birth %}
+            <h2 class="col-xl-4 col-sm-12 col-md-6 col-lg-6 col-xl-6">تاريخ الميلاد:<span class="text-info">{{boy.Date_of_Birth}}</span></h2>
+        {% endif %}
+        {% if boy.bus_subscriber == True %}
+            <h2 class="col-xl-4 col-sm-12 col-md-6 col-lg-6 col-xl-6">مشترك بالحافلة:<span class="text-info">نعم</span></h2>
+            <h2 class="col-xl-4 col-sm-12 col-md-6 col-lg-6 col-xl-6">سعر الاشتراك:<span class="text-info">{{boy.price_of_bus}}</span></h2>
+        {% else %}
+            <h2 class="col-xl-4 col-sm-12 col-md-6 col-lg-6 col-xl-6">مشترك بالحافلة:<span class="text-info">لا</span></h2>
+        {% endif %}
+        {% if boy.addres %}
+        <h2 class="col-xl-4 col-sm-12 col-md-6 col-lg-6 col-xl-6">العنوان:<span class="text-info">{{boy.addres}}</span></h2>
+        {% endif %}
+        <h2 class="col-xl-4 col-sm-12 col-md-6 col-lg-6 col-xl-6">النوع:<span class="text-info">{{boy.kind}}</span></h2>
+        {% if boy.allergy == True %}
+        <h2 class="col-xl-4 col-sm-12 col-md-6 col-lg-6 col-xl-6">لديه حساسية:<span class="text-info">نعم</span></h2>
+        {% else %}
+            <h2 class="col-xl-4 col-sm-12 col-md-6 col-lg-6 col-xl-6">لديه حساسية:<span class="text-info">لا</span></h2>
+        {% endif %}
+        {% if boy.sick == True %}
+            <h2 class="col-xl-4 col-sm-12 col-md-6 col-lg-6 col-xl-6">يعاني من امراض اخرى:<span class="text-info">نعم</span></h2>
+            <h2 class="col-xl-4 col-sm-12 col-md-6 col-lg-6 col-xl-6">المرض:<span class="text-info">{{boy.kind_of_sick}}</span></h2>
+        {% else %}
+            <h2 class="col-xl-4 col-sm-12 col-md-6 col-lg-6 col-xl-6">يعاني من امراض اخرى:<span class="text-info">لا</span></h2>
+        {% endif %}
+        <h2 class="col-xl-4 col-sm-12 col-md-6 col-lg-6 col-xl-6">التاريخ:<span class="text-info">{{boy.date|date:"j/n/Y"}}</span></h2>
+    </div>
+    <div class="row mt-3">
+        <div class="col-6"><a href="{% url 'app:Boy_edit'  boy.id %}" class="btn btn-primary">تعديل معلومات الطفل</a></div>
+        <div class="col-6 text-end align-self-end"><a href="{% url 'app:delete_boy'  boy.id %}" class="btn btn-danger">حذف معلومات الطفل</a></div>
+    </div>
+    {% endfor %}
+    <div class="row">
+        <div class="col text-center">
+          <button onclick="window.print();" class="btn btn-info col-4">طباعة الطالب</button>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

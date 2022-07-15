@@ -1,0 +1,13 @@
+{% extends 'short_base.html' %}
+{% block body %}
+{% load bootstrap4  %}
+ <div class="container mt-5">
+ <h1><center> تسجيل الدخول</center></h1>
+ <form method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+            <button type="submit" class="btn btn-primary mt-3">تسجيل الدخول</button>
+ </form>
+ <h6 class="mt-2">ليس لديك حساب: <a href="{% url 'accounts:sinup' %}">أنشا حسابا</a></h6>
+ </div>
+{% endblock body %}

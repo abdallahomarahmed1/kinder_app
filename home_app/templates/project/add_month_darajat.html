@@ -1,0 +1,22 @@
+{% extends 'base_add.html' %}
+{% block body %}
+{% load bootstrap4 %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#id_name').select2();
+        });
+    </script>
+    <div class="container form">
+        <h1><center>أضف درجات شهرية</center></h1>
+        <form method="post" style="text-align: right;" enctype="multipart/form-data">
+     {% comment %} {% load bootstrap4 %} {% endcomment %}
+        {% csrf_token %}
+        {% bootstrap_form form %}
+            <button type="submit" class="btn btn-primary mt-3">اضف</button>
+ </form>
+ </div>
+
+{% endblock body %}

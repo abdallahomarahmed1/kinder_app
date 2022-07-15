@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block body %}
+<style>
+    @media print {
+      .navigation{
+        display: none;
+      }
+      .my_search {
+        display: none;
+      }
+      .btn {
+        display: none;
+      }
+      a{
+        text-decoration: none;
+      }
+    }
+  </style>
+<div class="container">
+    <h1>عدد الغائبين: <span class="text-info">{{count}}</span></h1>
+  <div class="row my_search">
+    <form class="col-6">
+        {% csrf_token %}
+        <table>{{filter.form.as_table}}</table>
+            <button type="submit" class="btn btn-primary mt-3">بحث</button>
+    </form>
+    <div class="col-6 text-end align-self-end">
+      <a href="{% url 'app:add_teachers_absence' %}" class="btn btn-primary">اضف غياب</a>
+    </div>
+  </div>
+    <table class="table mt-4">
+        <thead>
+            <tr class="text-info">
+              <th scope="col">الاسم</th>
+              <th scope="col">بعذر</th>
+              <th scope="col">التاريخ</th>
+              <th scope="col">تعديل</th>
+              <th scope="col">حذف</th>
+            </tr>
+          </thead>
+        {% for teacher_absence in teacher_absence %}
+        <tr>
+            <th scope="row"><a href="{% url 'app:absence_detail' teacher_absence.id %}" class="link-info">{{teacher_absence}}</a></th>
+            {% if teacher_absence.excuse == True %}
+                <td>نعم</td>
+            {% else %}
+                <td>لا</td>
+            {% endif %}
+
+            <td>{{teacher_absence.add_date|date:"j/n/Y"}}</td>
+            <td><a href="{% url 'app:update_teachers_absence'  teacher_absence.id %}" class="btn btn-primary">تعديل</a></td>
+            <td><a href="{% url 'app:delete_teacher_absence'  teacher_absence.id %}" class="btn btn-danger">حذف</a></td>
+          </tr>
+        {% endfor %}
+
+        </tbody>
+      </table>
+
+
+      <div class="row">
+        <div class="col text-center">
+          <button onclick="window.print()" class="btn btn-primary col-4">طباعة</button>
+        </div>
+      </div>
+
+    {% if teacher_absence.has_other_pages %}
+    <nav aria-label="Page navigation example mt-5">
+        <ul class="pagination">
+        {% if teacher_absence.has_previous %}
+            <li class="page-item">
+            <a class="page-link" href="?page={{teacher_absence.previous_page_number}}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+            </li>
+        {% endif %}
+            {% for i in teacher_absence.paginator.page_range %}
+                <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+            {% endfor %}
+            {% if teacher_absence.has_next %}
+                <li class="page-item">
+                <a class="page-link" href="?page={{teacher_absence.next_page_number}}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+
+{% endif %}
+</div>
+{% endblock %}

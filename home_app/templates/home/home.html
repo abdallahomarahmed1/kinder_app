@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% block body %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-sm-6 col-lg-3">
+            <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+          <div class="h1 mt-3 text-center">
+              <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+          <div class="card-body text-center">
+            <h5 class="card-title">عدد الطلاب : {{boys}}</h5>
+            <a href="{% url 'app:all_boys' %}" class="btn btn-success">صفحة الطلاب</a>
+          </div>
+        </div>
+        </div>
+
+
+        <div class="col-sm-6 col-lg-3">
+            <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+                <div class="h1 mt-3 text-center">
+                  <i class="fa-solid fa-chalkboard-user"></i>
+                </div>
+              <div class="card-body text-center">
+                <h5 class="card-title">عدد المعلمين: {{teachers}}</h5>
+                <a href="{% url 'app:techeres' %}" class="btn btn-success">صفحة المعلمين</a>
+              </div>
+            </div>
+        </div>
+
+
+        <div class="col-sm-6 col-lg-3">
+            <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+                <div class="h1 mt-3 text-center">
+                  <i class="fa-solid fa-school"></i>
+                </div>
+              <div class="card-body text-center">
+                <h5 class="card-title">عدد الفصول : {{classes}}</h5>
+                <a href="{% url 'app:class' %}" class="btn btn-success">صفحة الفصول</a>
+              </div>
+            </div>
+        </div>
+
+
+        <div class="col-sm-6 col-lg-3">
+            <div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
+                <div class="h1 mt-3 text-center">
+                  <i class="fa-solid fa-users"></i>
+                </div>
+              <div class="card-body text-center">
+                <h5 class="card-title">عدد الموظفين : {{staffs}}</h5>
+                <a href="{% url 'app:staffs' %}" class="btn btn-success">صفحة الموظفين</a>
+              </div>
+            </div>
+        </div>
+
+
+        <div class="col-sm-6 col-lg-3">
+            <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+                <div class="h1 mt-3 text-center">
+                  <i class="fa-solid fa-id-card"></i>
+                </div>
+              <div class="card-body text-center">
+                <h5 class="card-title">عدد السائقين : {{drivers}}</h5>
+                <a href="{% url 'app:driveres' %}" class="btn btn-success">صفحة السائقين</a>
+              </div>
+            </div>
+        </div>
+
+
+        <div class="col-sm-6 col-lg-3">
+            <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+                <div class="h1 mt-3 text-center">
+                  <i class="fa-solid fa-bus"></i>
+                </div>
+              <div class="card-body text-center">
+                <h5 class="card-title">عدد وسائل المواصلات : {{transports}}</h5>
+                <a href="{% url 'app:Transports' %}" class="btn btn-success">صفحة وسائل المواصلات</a>
+              </div>
+            </div>
+        </div>
+
+
+        <div class="col-sm-6 col-lg-3">
+            <div class="card bg-light mb-3" style="max-width: 18rem;">
+                <div class="h1 mt-3 text-center">
+                  <i class="fa-solid fa-money-bill-wave"></i>
+                </div>
+              <div class="card-body text-center">
+                <h5 class="card-title">الطلاب الذين اتمو الدفع : {{paids}}</h5>
+                <a href="{% url 'app:all_boys' %}" class="btn btn-success">صفحة الطلاب</a>
+              </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-3">
+            <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+                <div class="h1 mt-3 text-center">
+                  <i class="fa-solid fa-cart-shopping"></i>
+                </div>
+              <div class="card-body text-center">
+                <h5 class="card-title">عدد المصروفات : {{expenses}}</h5>
+                <a href="{% url 'app:masrofs' %}" class="btn btn-success">صفحة المصروفات</a>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}

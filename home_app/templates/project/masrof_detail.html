@@ -1,0 +1,26 @@
+{% extends 'short_base.html' %}
+{% block body %}
+<style>
+    .border {
+        border: 2px solid #000;
+        border-radius: 12px;
+        padding: 20px;
+        background-color: #343a40;
+        color: #fff;
+        box-shadow: 7px 7px 5px 4px rgba(0, 0, 0, 0.21);
+    }
+</style>
+<div class="container mt-5 ">
+    {% for masrof in masrof %}
+    <div class="row border">
+        <h2 class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6"><span class="text-info">الإسم: </span>{{masrof.name}}</h2>
+        <h2 class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6"><span class="text-info">السعر:</span>{{masrof.price}}</h2>
+        <h2 class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6"><span class="text-info">التاريخ:</span>{{masrof.date|date:"j/n/Y"}}</h2>
+    </div>
+    <div class="row">
+            <div class="col-6"><a href="{% url 'app:edit_masrof'  masrof.id %}" class="btn btn-primary">تعديل المصروف</a></div>
+            <div class="col-6 text-end align-self-end"><a href="{% url 'app:delete_masrof'  masrof.id %}" class="btn btn-danger">حذف المصروف</a></div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

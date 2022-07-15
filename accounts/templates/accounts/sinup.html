@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block body %}
+{% load bootstrap4  %}
+ <div class="container mt-5">
+ <center><h1>إنشاء حساب</h1></center>
+ <form method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% comment %} <table>{{form.as_table}}</table> {% endcomment %}
+            <button type="submit" class="btn btn-primary">إنشاء حساب</button>
+ </form>
+  <h6>لديك حساب بالفعل: <a href="{% url 'accounts:login' %}">تسجيل الدخول </a></h6>
+ </div>
+{% endblock body %}

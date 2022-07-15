@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block body %}
+<style>
+    .border {
+        border: 2px solid #000;
+        border-radius: 12px;
+        padding: 20px;
+        background-color: #343a40;
+        color: #fff;
+        box-shadow: 7px 7px 5px 4px rgba(0, 0, 0, 0.21);
+    }
+    @media print {
+    .btn{
+        display: none;
+    }
+</style>
+<div class="container mt-4">
+    {% for class in class %}
+    <div class="row border">
+        <h2 class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-4"><span class="text-info">الإسم:</span>{{class}}</h2>
+        <h2 class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-4"><span class="text-info">المعلمة:</span>{{class.techer}}</h2>
+        <h2 class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-4"><span class="text-info">النسبة</span>{{class.get_nesba|floatformat:1}}%</h2>
+        <h2 class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-4"><span class="text-info"> درجات الطلاب: </span>{{class.all_darajat}}</h2>
+        <h2 class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-4"><span class="text-info">التاريخ:</span>{{class.date|date:"j/n/Y"}}</h2>
+    </div>
+    <div class="row mt-3 mb-3">
+        <div class="col-6"><a href="{% url 'app:class_edit'  class.id %}" class="btn btn-primary">تعديل فصل</a></div>
+        <div class="col-6 text-end align-self-end"><a href="{% url 'app:delete_class'  class.id %}" class="btn btn-danger">حذف فصل</a></div>
+    </div>
+    {% endfor %}
+   <center><h2>الطلاب المسجلين في الفصل</h2></center>
+   <div class="border">
+       <center><h5>عدد الطلاب:<span class="text-info"> {{count_boy_class}}</span></h5></center>
+       <div class="row">
+    {% for boy in boy %}
+        <div class="col-lg-6 col-xl-6 col-md-6 col-xs-12">{{boy.name}}</div>
+    {% endfor %}
+    </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col text-center">
+          <button onclick="window.print();" class="btn btn-info col-4">طباعة المعلم</button>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
